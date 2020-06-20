@@ -76,14 +76,6 @@ if __name__ == '__main__':
     modelfile   = get_assigned_file(checkpoint_dir,params.save_epoch)
   else:
     modelfile   = get_best_file(checkpoint_dir)
-  if params.method in ['relationnet', 'relationnet_softmax']:
-    if params.model == 'Conv4':
-      model = backbone.Conv4NP()
-    elif params.model == 'Conv6':
-      model = backbone.Conv6NP()
-    else:
-      model = model_dict[params.model]( flatten = False )
-  else:
     model = model_dict[params.model]()
   model = model.cuda()
   tmp = torch.load(modelfile)
